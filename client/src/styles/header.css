@@ -1,0 +1,32 @@
+
+.header{
+    height : 50px;
+    /* border : 2px solid red ; */
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    background-color: rgb(255, 211, 0);
+}
+.header a{
+    color : #FFF
+}
+.contact{
+
+    flex : 20%;
+}
+.logo{
+    flex:50%;
+    height:fit-content;
+}
+.logo img{
+    height : 80px;
+    width: 80px;
+}
+.login{
+
+    flex : 10%;
+}
+.register{
+    flex : 15%;
+}

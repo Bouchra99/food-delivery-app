@@ -1,0 +1,34 @@
+.card{
+    height : fit-content;
+    width: fit-content;
+    border : 2px solid rgb(255, 211, 0);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.item-image img{
+    flex : 70%;
+    max-height: 200px;
+}
+.item-label{
+    flex:10%;
+    text-align: center;
+}
+.item-price{
+    flex:10%;
+    text-align: center;
+}
+.item-buttons{
+    flex : 10%;
+    width :100%;
+    height:100%;
+    /* border : 2px solid red ; */
+    padding : 0;
+    display: flex;
+    
+}
+.item-buttons button{
+    flex : 50%;
+    /* border : 2px solid red ; */
+}
+
