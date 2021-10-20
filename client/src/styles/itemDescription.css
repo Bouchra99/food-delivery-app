@@ -32,3 +32,39 @@
 .item-details button{
     width : 30%
 }
+.ingredients-list{
+    width : fit-content;
+    height: fit-content;
+    padding: 2px 0 2px 7px ;
+    color : rgb(75, 75, 75) ;
+    font-size: 18px;
+    background-color: rgb(255, 252, 216);
+    border : 1px solid rgb(99, 99, 99);
+    border-radius : 2px ; 
+    display: inline-flex;
+    align-items: centers;
+    justify-content: center;
+    margin: 2px;
+}
+#number {
+    width :50px;
+    border : 1px solid #000; 
+    border-radius: 2px;
+    padding: 2px 5px;
+}
+.ing-delete{
+    flex: 5%;
+    /* display: inline; */
+    padding: 2px;
+    width : 5px;
+    height: fit-content;
+    background-color: transparent;
+    color : rgb(253, 160, 160);
+    margin-left: 5px;
+    border-radius: 5px;
+    border: none;
+}
+.ing-delete:hover{
+    background-color: transparent;
+    color : rgb(187, 24, 24);
+}

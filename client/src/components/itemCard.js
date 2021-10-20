@@ -11,7 +11,7 @@ const ItemCard = (prop) => {
                <b>{prop.label}</b> 
             </div>
             <div className="item-price">
-                {prop.price}
+                {prop.price} mad
             </div>
             <div className="item-buttons">
                 <Link to ={`/items/${prop.id}`}>

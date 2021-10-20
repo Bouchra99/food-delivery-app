@@ -2,9 +2,20 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors')
 const itemRoutes = require('./routes/item');
+const clientRoutes = require('./routes/client')
 // const Item = require('./models/item')
 
 const app = express();
+//==============
+app.use(
+    express.urlencoded({
+      extended: true
+    })
+)
+  
+app.use(express.json())
+//==============
+
 // const dbURI = 'mongodb+srv://bouchra:FmJMIfWCt26BbRrS@foodapp.od78c.mongodb.net/FoodApp?retryWrites=true&w=majority';
 app.use(cors())
 const dbURI = 'mongodb://localhost:27017/FoodApp';
@@ -19,6 +30,7 @@ mongoose.connect(dbURI,{useNewUrlParser : true , useUnifiedTopology : true}).
     ); 
 
 app.use('/items',itemRoutes); 
+app.use('/user',clientRoutes);
 
 // app.get('/add',(req,res)=>{
 //     const item = new Item(
