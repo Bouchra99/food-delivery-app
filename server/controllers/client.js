@@ -55,7 +55,7 @@ const register = async (req,res)=>{
 //middleware : 
 
 const verifyToken = (req, res, next) => {
-    let token = req.headers["x-access-token"];
+    const token = req.headers["x-access-token"];
   
     if (!token) {
       return res.status(403).send({ message: "No token provided! authorization denied " });
@@ -72,36 +72,8 @@ const verifyToken = (req, res, next) => {
     }catch(err){
         res.status(401).json({msg : err})
     }
-    // jwt.verify(token,JWT_SECRET, (err, decoded) => {
-    //   if (err) {
-    //     return res.status(401).send({ message: "Unauthorized!" });
-    //   }
-    //   req.userId = decoded.id;
-    //   next();
-    // });
+
   };
   
-  const isTokenValid = async (req,res) =>{
-    try {
-        const token = req.header("auth-token");
-        if (!token) {
-          return res.json("false");
-        }
-    
-        const verified = jwt.verify(token, JWT_SECRET);
-        if (!verified) {
-          return res.json("false");
-        }
-    
-        const user = await Client.findById(verified._id);
-        if (!user) {
-          return res.json("false");
-        }
-    
-        return res.json(true);
-      } catch {
-        res.status(500).json({ msg: err.message });
-      }
-  }
   
-module.exports = {login ,register, verifyToken,isTokenValid}
+module.exports = {login ,register, verifyToken}

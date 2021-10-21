@@ -18,37 +18,6 @@ function App() {
     user: undefined,
   })
 
-  useEffect(() => {
-    const isLoggedIn = async () => {
-      let token = localStorage.getItem("auth-token")
-      if (token == null){
-        localStorage.setItem("auth-token", "")
-        token = ""
-      }
-
-      const tokenResponse = await axios.post(
-        '/api/users/tokenIsValid', 
-        null, 
-        {headers: {"auth-token": token}}
-      )
-
-      console.log(tokenResponse.data)
-      if(tokenResponse.data){
-        const userResponse = await axios.get('/api/users/profile',
-          {headers: {'auth-token': token}}
-        )
-        setUserdata({
-          token: token,
-          user: userResponse.data
-        })
-      }
-    }
-    isLoggedIn()
-  }, [])
-
-
-
-
 
   return (
     <div className="App">

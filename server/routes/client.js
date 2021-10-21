@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {login , register, verifyToken,isTokenValid} = require('../controllers/client')
+const {login , register, verifyToken} = require('../controllers/client')
 
 
 //Login
@@ -19,9 +19,5 @@ router.get('/profile',verifyToken,(req,res)=>{
 })
 
 
-//is token valid : 
-router.post("/tokenIsValid", async (req, res) => {
-     isTokenValid()
-  });
 
 module.exports = router ;
