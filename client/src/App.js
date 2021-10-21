@@ -13,15 +13,39 @@ import Profile from './pages/client/profile'
 import axios from 'axios'
 function App() {
 
-  const [userData, setUserdata] = useState({
-    token: undefined,
-    user: undefined,
-  })
+  // const [userData, setUserdata] = useState({
+  //   token: undefined,
+  //   user: undefined,
+  // })
+  
+  const [logedIn,setLogedIn] = useState(false)
+  const [token,setToken] = useState('')
 
+
+  const verifyToken= async ()=>{
+
+    const storedToken = localStorage.getItem('token')
+     
+    axios.post('http://localhost:4000/user/verify',null, {headers: {"token": storedToken}}).
+        
+          then(
+            res=> setLogedIn(res.data) )
+
+          // console.log(res)
+        
+      
+    }
+    
+  
+
+  useEffect(() => {
+    verifyToken()
+  }, [])
 
   return (
     <div className="App">
-     <UserContext.Provider value={{ userData , setUserdata }}>
+     
+     <UserContext.Provider value={{logedIn,setLogedIn}}>
      <Router>
        <Header/>
        <Switch>

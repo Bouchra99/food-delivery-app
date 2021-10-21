@@ -5,8 +5,10 @@ import {useHistory } from 'react-router-dom'
 import '../styles/login.css'
 const Login = () => {
     
-    const history  = useHistory();
-    const {userData,setUserdata} = useContext(UserContext)
+    // const history  = useHistory();
+    const {logedIn,setLogedIn} = useContext(UserContext)
+    const {token,setToken} = useContext(UserContext)
+    
     
     const [username,setUsername]=useState('');
     const [password,setPassword]=useState('');
@@ -20,21 +22,14 @@ const Login = () => {
     const login = async () => {
         console.log('login clicked')
         axios.post('http://localhost:4000/user/login',user).
-          then(res => {
-              console.log(res)
-              
-              setUserdata({
-                  token : res.data.token, 
-                  user : res.data.result
-                })
-
-              localStorage.setItem("auth-token",  res.data.token);
-
-              window.location = "/items";
-            // usercontext.setId(res.data.result._id)
-            // console.log(res.data.result._id)
-        //    history.push(`/profile/${res.data.result._id}`)
-            // getProfile()
+          then( res => {
+              console.log(res.data.token)
+           
+               setLogedIn(true);
+               localStorage.setItem("token",  res.data.token);
+            
+            //   window.location = "/items";
+         
           })
     }
 
@@ -56,6 +51,8 @@ const Login = () => {
                 onChange = {e => setPassword(e.target.value)}
             />
             <button onClick={()=>login()}>Login</button>
+
+            {/* {logedIn ? "True" : "False"} */}
         </div>
     )
 }

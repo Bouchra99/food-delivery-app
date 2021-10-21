@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {login , register, verifyToken} = require('../controllers/client')
+const {login , register, authorize} = require('../controllers/client')
 
 
 //Login
@@ -13,10 +13,26 @@ router.post('/register',(req,res)=>{
     register(req,res)
 })
 
-// after login : 
-router.get('/profile',verifyToken,(req,res)=>{
-    console.log('after login')
+
+//verify if user is logged in: 
+router.post('/verify',authorize,(req,res)=>{
+    // --- move this to contoller folder 
+    try{
+        res.json(true)
+    }catch(err){
+        res.status(500).json({message : err})
+    }
 })
+
+// protected routes : 
+
+// router.get('/profile',authorize,(req,res)=>{
+//     try{
+//         res.json(req.user)
+//     }catch(err){
+//         res.status(500).json({err})
+//     }
+// })
 
 
 
