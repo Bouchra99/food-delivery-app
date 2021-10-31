@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const {login , register, authorize} = require('../controllers/client')
+const {authorize} = require('../middleware/authorize')
+const {login , register} = require('../controllers/client')
 
 
 //Login
@@ -23,6 +24,12 @@ router.post('/verify',authorize,(req,res)=>{
         res.status(500).json({message : err})
     }
 })
+
+// client shoping Cart : 
+
+// router.get('/cart',authorize,(req,res)=>{
+//    shopingCart(req,res)
+// })
 
 // protected routes : 
 

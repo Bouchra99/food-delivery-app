@@ -15,7 +15,8 @@ const login = async (req,res)=>{
     const client = await Client.findOne({username}).lean()
 
     if(!client){
-        console.log('invalid usernmae or password') // handle error properly !!! 
+        // console.log('invalid usernmae or password') 
+        res.status(401).json('invalid username or password')
     }
   
   // check if password matches the one in the db : 
@@ -30,7 +31,8 @@ const login = async (req,res)=>{
         // console.log('success')
         res.status(200).json({ token })
     }else{
-        console.log('invalid usernmae or password') // handle error properly !!! 
+        // console.log('invalid usernmae or password') 
+        res.status(401).json('invalid username or password')
     }
 }
 
@@ -50,7 +52,8 @@ const register = async (req,res)=>{
             password : password,
             phone : user.phone,
             adress : user.adress,
-            email : user.email
+            email : user.email,
+            
         })
       
       // save in the DB : 
@@ -66,7 +69,12 @@ const register = async (req,res)=>{
                return res.status(200).json({token})
             }
             
-        ).catch(err=>console.log(err.message))
+        ).catch(
+          err=>{
+            console.log("cannot save " + err.message)
+            res.status(400).json('user already registred')
+          }
+        )
 
      
         
@@ -76,30 +84,17 @@ const register = async (req,res)=>{
     }
 }
 
+// const shopingCart = (req,res) =>{
+//   try{
 
-//middleware to verify token and authorize :-- move this to middleware folder 
+//     res.status(200).json('shoping Cart')
 
-const authorize = (req, res, next) => {
-    const token = req.header("token");
-  
-    if (!token) {
-      return res.status(403).send({ message: "No token provided! authorization denied " });
-    }
-  
-    try{
-        const payload = jwt.verify(token,JWT_SECRET)
-        if(!payload){
-           return res.status(403).send({ message: "cannot verify! authorization denied" });
-        }
+//   }catch(err){
+//       res.status(404).json('you are not authorized')
+//   }
+// }
 
-        req.user = payload;
-        next() 
 
-    }catch(err){
-        res.status(401).json({message : err})
-    }
-
-  };
   
 
-module.exports = {login ,register, authorize}
+module.exports = {login ,register}

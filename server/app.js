@@ -2,7 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors')
 const itemRoutes = require('./routes/item');
-const clientRoutes = require('./routes/client')
+const clientRoutes = require('./routes/client');
+const cartRoutes = require('./routes/cart')
 // const Item = require('./models/item')
 
 const app = express();
@@ -31,6 +32,7 @@ mongoose.connect(dbURI,{useNewUrlParser : true , useUnifiedTopology : true}).
 
 app.use('/items',itemRoutes); 
 app.use('/user',clientRoutes);
+app.use('/user',cartRoutes);
 
 // app.get('/add',(req,res)=>{
 //     const item = new Item(
