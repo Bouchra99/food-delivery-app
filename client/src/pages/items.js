@@ -15,10 +15,10 @@ const Items = () => {
     return (
         <div className="items-container">
             
-            {console.log(items)}
+            {/* {console.log(items)} */}
             {items.map(item=>
                 // <p>{item.label}</p>
-                <ItemCard key={item.id} imageUrl = {item.imageUrl} label={item.label} price={item.price} id={item._id} />
+                <ItemCard key={item.id} imageUrl = {item.imageUrl} label={item.label} price={item.price} id={item._id} ingredients = {item.ingredients}/>
             )}
         </div>
     )

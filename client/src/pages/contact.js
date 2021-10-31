@@ -1,12 +1,11 @@
 import '../styles/contact.css'
-import {useContext} from 'react'
-import UserContext from '../userContext'
 
 const Contact = () => {
-    const {logedIn,setLogedIn} = useContext(UserContext)
     return (
         <div className="info">
-           infos {logedIn ? "True" : "False"}
+
+          <h3> Nothing to show here for the moment </h3> 
+        
         </div>
     )
 }

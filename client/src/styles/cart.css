@@ -1,0 +1,25 @@
+.cart{
+    margin : 100px auto 10px auto;
+    padding: 10px;   
+    width : 80vw;
+    height: fit-content;
+    border : 2px solid red ;
+}
+.cart-items {
+    display: flex;
+    width : 50vw ;
+    height : 50px ;
+    border : 2px solid rgb(255, 207, 74) ;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+#label{
+    padding: 10px;
+    flex : 90%;
+    font-weight: bold; 
+}
+#number{
+    padding: 10px;
+    border : none ;
+    flex : 10% ;
+}

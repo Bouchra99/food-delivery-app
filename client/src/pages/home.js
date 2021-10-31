@@ -2,6 +2,9 @@ import logo from '../media/Foody-logos_transparent.png'
 import '../styles/home.css'
 import { Link } from 'react-router-dom'
 const Home = () => {
+
+   
+
     return (
         <div className="home">
            <div className="logo-home">

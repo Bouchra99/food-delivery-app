@@ -9,18 +9,12 @@ import Item from './pages/item'
 import Contact from './pages/contact'
 import Login from './pages/login'
 import Register from './pages/register'
-import Profile from './pages/client/profile'
+import ShoppingCart from './pages/shoppingCart'
 import axios from 'axios'
 function App() {
 
-  // const [userData, setUserdata] = useState({
-  //   token: undefined,
-  //   user: undefined,
-  // })
   
   const [logedIn,setLogedIn] = useState(false)
-  const [token,setToken] = useState('')
-
 
   const verifyToken= async ()=>{
 
@@ -32,12 +26,9 @@ function App() {
             res=> setLogedIn(res.data) )
 
           // console.log(res)
-        
-      
+         
     }
     
-  
-
   useEffect(() => {
     verifyToken()
   }, [])
@@ -55,6 +46,7 @@ function App() {
          <Route exact path = '/contact-us' component={Contact}></Route>
          <Route exact path = '/login' component = {Login}></Route>
          <Route exact path = '/register' component = {Register}></Route>
+         <Route exact path = '/cart' component = {ShoppingCart}></Route>
         
 
        </Switch>

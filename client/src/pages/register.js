@@ -1,7 +1,11 @@
-import {useState} from 'react'
+import {useState,useContext} from 'react'
 import axios from 'axios'
 import '../styles/register.css'
+import UserContext from '../userContext'
 const Register = () => {
+
+    const {logedIn,setLogedIn} = useContext(UserContext)
+
     const [firstName,setFirstName] = useState('')
     const [lastName,setLastName] = useState('')
     const [username,setUsername] = useState('')
@@ -14,7 +18,22 @@ const Register = () => {
     const register = async () => {
         console.log('register clicked');
         axios.post('http://localhost:4000/user/register',user).then(
-            res => console.log(res)
+            res => {
+                
+                setLogedIn(true);
+                localStorage.setItem("token",  res.data.token);
+ 
+                window.history.replaceState(null, null, '/');
+                window.location = "/items";
+            }
+        ).catch(
+            err =>{ 
+                // console.log(err.response.status)
+                const erreur = err.response?.status
+                if(erreur === 400){
+                    window.alert('client already saved. Try a new username')
+                }
+            }
         )
     }
 
@@ -22,50 +41,57 @@ const Register = () => {
         <div className = "registration-form">
 
             <h1>Register</h1>
-            <label for = "fisrtName">Your First Name</label>
+            {/* <label for = "fisrtName">Your First Name</label> */}
             <input 
+                placeholder = "First Name"
                 id = "firsName"
                 type = "text"
                 value = {firstName}
                 onChange = {(e)=>setFirstName(e.target.value)}
             />
-            <label for = "lastName">Your Last Name</label>
+            {/* <label for = "lastName">Your Last Name</label> */}
             <input 
+                placeholder = "Last Name"
                 id = "lastName"
                 type = "text"
                 value = {lastName}
                 onChange = {(e)=>setLastName(e.target.value)}
             />
-            <label for = "username">Your Username</label>
+            {/* <label for = "username">Your Username</label> */}
             <input 
+                placeholder = "Username"
                 id = "username"
                 type = "text"
                 value = {username}
                 onChange = {(e)=>setUsername(e.target.value)}
             />
-            <label for = "password">Your Password</label>
+            {/* <label for = "password">Your Password</label> */}
             <input 
+                placeholder = "Password"
                 id = "password"
                 type = "password"
                 value = {password}
                 onChange = {(e)=>setPassword(e.target.value)}
             />
-             <label for = "password">Your Phone</label>
+             {/* <label for = "password">Your Phone</label> */}
             <input 
+                placeholder = "Phone Number"
                 id = "phone"
                 type = "text"
                 value = {phone}
                 onChange = {(e)=>setPhone(e.target.value)}
             />
-             <label for = "adress">Your Adress</label>
+             {/* <label for = "adress">Your Adress</label> */}
             <input 
+                placeholder = "Home Adress"
                 id = "adress"
                 type = "text"
                 value = {adress}
                 onChange = {(e)=>setAdress(e.target.value)}
             />
-             <label for = "email">Your Email</label>
+             {/* <label for = "email">Your Email</label> */}
             <input 
+                placeholder = "Email"
                 id = "email"
                 type = "text"
                 value = {email}
