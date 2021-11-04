@@ -3,15 +3,23 @@
     padding: 10px;   
     width : 80vw;
     height: fit-content;
-    border : 2px solid red ;
+    /* border : 2px solid red ; */
 }
-.cart-items {
+.cart a{
+    font-size: 20px;
+    color :rgb(61, 61, 61)
+}
+.cart-item {
     display: flex;
+
     width : 50vw ;
     height : 50px ;
     border : 2px solid rgb(255, 207, 74) ;
     border-radius: 5px;
     margin-bottom: 5px;
+}
+.cost{
+    margin-top: 10px;
 }
 #label{
     padding: 10px;
@@ -22,4 +30,7 @@
     padding: 10px;
     border : none ;
     flex : 10% ;
+}
+.cart-item button{
+    flex: 10%
 }

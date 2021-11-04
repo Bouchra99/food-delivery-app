@@ -14,7 +14,8 @@ const  getItems = async (req,res)=>{
    
 }
 //get Item by Id : 
-const getItem = async (req,res,id)=>{
+const getItem = async (req,res)=>{
+    const id = req.params.id;
     try{
         const item = await Item.findById(id);
         res.send(item)

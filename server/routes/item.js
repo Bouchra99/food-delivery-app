@@ -10,8 +10,8 @@ router.get('/',(req,res)=>{
 //get item by Id : 
 router.get('/:id',(req,res)=>{
 //    res.send(req.params.id)
-  const id = req.params.id;
-  getItem(req,res,id)
+  
+  getItem(req,res)
 })
 
 module.exports = router ;

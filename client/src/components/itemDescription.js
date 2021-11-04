@@ -1,15 +1,29 @@
 import '../styles/itemDescription.css'
 import {useState} from 'react'
 import {TiDelete} from 'react-icons/ti'
-
+import axios from 'axios'
 const ItemDescription = (prop) => {
+    const storedToken = localStorage.getItem('token')
+
     const item = prop.item;
     const initialPrice = item.price ;
     const initialIngredients = item.ingredients;
+    const label = item.label;
     const [price,setPrice] = useState(initialPrice);
     const [number,setNumber] = useState(1);
     const [ingredients,setIngredients] = useState(initialIngredients);
 
+    const addToCart = () =>{
+        
+ 
+        axios.post('http://localhost:4000/user/cart/add',{label,number,price,ingredients},{headers : {token : storedToken}}).then(
+            res =>
+            {
+                console.log(res)
+            }
+        )
+
+    }
     return (
         <div className="item-description">
             
@@ -51,7 +65,7 @@ const ItemDescription = (prop) => {
                     {price} mad
                  </div>
 
-                <button>Add to Cart</button>
+                <button onClick={()=>addToCart()}>Add to Cart</button>
             </div>
         </div>
     )

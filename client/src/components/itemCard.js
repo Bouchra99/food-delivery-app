@@ -16,22 +16,18 @@ const ItemCard = (prop) => {
     
     const id = prop.id ;
 
-    const [cart,setCart] = useState([])
-    const [totalPrice,setTotalPrice] = useState(0)
+    // const [cart,setCart] = useState([])
+    // const [totalPrice,setTotalPrice] = useState(0)
 
     const addToCart = () =>{
         
-        // setCart(cart=>[...cart,label])
-        // setTotalPrice(totalPrice+price)
-        
-        // console.log(cart)
-        // console.log(totalPrice)
-        // axios.post('http://localhost:4000/user/cart/add',{cart,totalPrice},{headers : {token : storedToken}}).then(
-        //     res =>
-        //     {
-        //         console.log(res)
-        //     }
-        // )
+ 
+        axios.post('http://localhost:4000/user/cart/add',{label,price,ingredients},{headers : {token : storedToken}}).then(
+            res =>
+            {
+                console.log(res)
+            }
+        )
 
     }
 
