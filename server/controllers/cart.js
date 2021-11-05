@@ -3,31 +3,38 @@
 const jwt = require('jsonwebtoken')
 // const Client = require('../models/client');
 const Cart = require('../models/cart')
-const { getItems } = require('./item');
+
 
 const shopingCart = async (req,res) =>{
     try{
         const token = req.header('token');
         const client_id = await jwt.decode(token)?.id ;
-        const cart = await Cart.findOne({client_Id : client_id}) || [] ;
-        console.log(cart)
-        res.status(200).json(cart)
+        const shoppingCart = await Cart.findOne({client_Id : client_id})  ;
+      
+        res.status(200).json(shoppingCart)
   
     }catch(err){
         res.status(404).json('you are not authorized')
     }
-}
+} 
 
 const removeItem = async (req,res)=>{
     try{
         const token = req.header('token');
         const client_id = await jwt.decode(token)?.id ;
         const id = req.params.id ; 
-        console.log(id)
-       
+        // console.log(id)
+        const cart = await Cart.findOne({client_Id : client_id})
+        // console.log(cart)
+        const itemPrice = cart.items.filter(item=>item._id == id)[0].price ;
+        cart.items = cart.items.filter(item => item._id != id)
+        cart.cost -= itemPrice;
+        // console.log(cart.cost);
+        // cart.items = items ;
+        cart.save()
 
     }catch(err){
-        res.status(500).json('failed to remove this item')
+        res.status(500).json(err.message)
     }
 }
 
@@ -43,9 +50,9 @@ const addToCart = async (req,res)=> {
 
 
         const items = [...cart.items,{
-            'label':label,'ingredients' : ingredients,'number':number
+            'label':label,'ingredients' : ingredients,'number':number,'price' : price
         }] || [];
-
+        
         const cost = cart.cost + price|| price;
         
         cart.items = items ;
@@ -54,8 +61,8 @@ const addToCart = async (req,res)=> {
 
         cart.save()
 
-        console.log(cart)
-       
+        // console.log(cart)
+        res.status(200)
         
     }catch(err){
         res.status(500).json("failed to add")

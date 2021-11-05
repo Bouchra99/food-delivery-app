@@ -8,6 +8,9 @@ const itemSchema = new Schema({
         type : String
     } ,
     ingredients : [String],
+    price : {
+        type : Number
+    },
     number: {
         type : Number ,
         default : 1
