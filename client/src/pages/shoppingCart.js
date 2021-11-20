@@ -47,9 +47,16 @@ const ShoppingCart = () => {
              </div>
              <div className="cost">Total cost : <b>{cost? cost : 0}</b> mad</div>
              <br/>
-            <Link to='/items'>
-               <b> Add more items </b> 
-            </Link>
+             <div className='links'>
+                <Link to='/items'>
+                    <b> Add more items </b> 
+                </Link>
+
+                <Link to='/order'>
+                     <b>Validate Order</b> 
+                </Link>
+             </div>
+       
         </div>
     )
 }

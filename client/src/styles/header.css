@@ -1,6 +1,7 @@
 
 .header{
     height : 50px;
+    margin-bottom: 20px;
     /* border : 2px solid red ; */
     display: flex;
     flex-direction: row;

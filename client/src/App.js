@@ -10,6 +10,8 @@ import Contact from './pages/contact'
 import Login from './pages/login'
 import Register from './pages/register'
 import ShoppingCart from './pages/shoppingCart'
+import Order from './pages/order'
+
 import axios from 'axios'
 function App() {
 
@@ -47,6 +49,7 @@ function App() {
          <Route exact path = '/login' component = {Login}></Route>
          <Route exact path = '/register' component = {Register}></Route>
          <Route exact path = '/cart' component = {ShoppingCart}></Route>
+         <Route exact path = '/order' component = {Order}></Route>
         
 
        </Switch>

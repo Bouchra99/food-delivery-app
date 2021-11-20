@@ -71,4 +71,18 @@ const addToCart = async (req,res)=> {
 
 }
 
-module.exports = {shopingCart,addToCart,removeItem}
+const emptyCart = async (req,res)=>{
+    try{
+        //console.log('delete everything from user\'s shopping cart')
+        const token = req.header('token') ; 
+        const client_id = await jwt.decode(token)?.id ;
+        const cart = await Cart.findOne({client_Id : client_id})|| new Cart();
+        cart.items = [] ;
+        cart.cost = 0 ;
+        cart.save()
+    }catch(err){
+        res.status(500).json('failed to validate the order')
+    }
+}
+
+module.exports = {shopingCart,addToCart,removeItem,emptyCart}

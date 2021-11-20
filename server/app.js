@@ -21,11 +21,12 @@ app.use(express.json())
 app.use(cors())
 const dbURI = 'mongodb://localhost:27017/FoodApp';
 
+const port = process.env.PORT || 4000 ;
 
 console.log('waiting for mongoDb to connect ...')
 mongoose.connect(dbURI,{useNewUrlParser : true , useUnifiedTopology : true}).
     then(
-         app.listen(4000,()=> console.log('server running on port 4000'))
+         app.listen(port,()=> console.log(`server running on port ${port}`))
     ).catch(
         (err)=>console.log(err.message)
     ); 
