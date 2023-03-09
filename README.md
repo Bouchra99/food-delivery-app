@@ -1,2 +1,1 @@
-# food-delivery-app
-MERN APP 
+This Github repository contains a food delivery app built using the MERN (MongoDB, Express, React, Node.js) stack. The purpose of the project is to learn and practice CRUD (Create, Read, Update, Delete) operations in the context of a real-world application.
